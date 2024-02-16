@@ -1,3 +1,5 @@
+# to run locally: python -m flask --app .\main.py run
+
 from flask import Flask
 
 app = Flask(__name__)
