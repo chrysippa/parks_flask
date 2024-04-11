@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minnesota Parks</title>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Hello parks</h1>
+    <p>{{ my_var }}</p>
+    <ul>
+        {% for item in my_list %}
+            {% if item == 'cashew' %}
+                item = item + 'chew'
+            {% endif %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+    <img src="{{ url_for('static', filename='img/pic.jpg') }}" alt="A picture" />
+</body>
+</html>

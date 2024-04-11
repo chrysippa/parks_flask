@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minnesota Parks: {{ info['name'] }}</title>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Hello individual park</h1>
+    <p>The park details are as follows:</p>
+    <ul>
+        {% for item in info.keys() %}
+            <li>{{ info[item] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
