@@ -3,20 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Minnesota Parks</title>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='index_script.js') }}"></script>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='index_style.css') }}">
 </head>
 <body>
-    <h1>Hello parks</h1>
-    <p>{{ my_var }}</p>
-    <ul>
-        {% for item in my_list %}
-            {% if item == 'cashew' %}
-                item = item + 'chew'
-            {% endif %}
-            <li>{{ item }}</li>
-        {% endfor %}
-    </ul>
-    <img src="{{ url_for('static', filename='img/pic.jpg') }}" alt="A picture" />
+    <h1>MN Parks</h1>
+    <button type="button" id="toggle_button" onclick="toggle_index()">Show map view</button>
+    <div id="list">
+        <table>
+            {% for p in parks %}
+                <tr>
+                    <td>{{ p['name'] }}</td>
+                    <td>{{ p['summary'] }}</td>
+                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div id="map">
+        map here
+    </div>
+
+    <p>Updated: {{ date }}</p>
 </body>
 </html>

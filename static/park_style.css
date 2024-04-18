@@ -1,0 +1,11 @@
+#today, 
+#tomorrow,
+#details,
+#today_weather, 
+#today_alerts,
+#today_seasonal,
+#tomorrow_weather,
+#tomorrow_alerts,
+#tomorrow_seasonal {
+    display: none;
+}
