@@ -1,7 +1,29 @@
 #list {
-    display: block;
+    display: none;
+    width: 30rem;
+    margin: auto;
+}
+
+table {
+    width: 30rem;
+    margin: auto;
 }
 
 #map {
-    display: none;
+    display: block;
+    height: 70vh; /* Percent of viewport height */
+    width: 50%;
+    margin: auto;
+}
+
+@media screen and (min-width: 800px) {
+    #list {
+        width: 100%;
+        column-width: 30rem;
+    }
+}
+
+#toggle_button {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }

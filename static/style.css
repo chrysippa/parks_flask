@@ -1,3 +1,38 @@
+* {
+    font-family: Verdana, sans-serif;
+}
+
+.content {
+    width: 80%;
+    margin: auto;
+}
+
+a, a:visited {
+    color: green;
+}
+
+a:hover {
+    color: rgb(0, 80, 0);
+}
+
 h1 {
     color: green;
+}
+
+h1 a {
+    text-decoration-line: none;
+}
+
+.footer, .footer a {
+    font-style: italic;
+    color: gray;
+}
+
+.footer {
+    margin-top: 3rem;
+}
+
+img {
+    height: 4rem;
+    width: 6rem;
 }

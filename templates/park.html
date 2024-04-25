@@ -8,234 +8,255 @@
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='park_style.css') }}">
 </head>
 <body>
-    <h1><a href="{{ url_for('index') }}">MN Parks</a></h1>
-    <h2>{{ p['name'] }}</h2>
+    <div class="content">
+        <h1><a href="{{ url_for('index') }}">MN Parks</a></h1>
+        <h2>{{ p['name'] }}</h2>
 
-    <!-- Today section -->
-    <p>
-        Today 
-        <button type="button" id="today_button" onclick="toggle('today')">Show</button>
-        <img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" />
-    </p>
-    <div id="today">
-        <!-- Today weather -->
-        <p>
-            Weather
-            <button type="button" id="today_weather_button" onclick="toggle('today_weather')">Show</button>
-            <img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" />
-        </p>
-        <div id="today_weather">
-            <!-- Icon may be: snow, rain, fog, wind, cloudy, partly-cloudy, clear -->
-            <p>
-                <img src="{{ url_for('static', filename='img/partly-cloudy.svg') }}" alt="Iconalt" /> 
-                Partly cloudy throughout the day. 
-            </p>
+        <div id="data">
+            <!-- Today section -->
             <table>
-                <tr>
-                    <td>Max temperature</td>
-                    <td>00 degrees</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
-                </tr>
-                <tr>
-                    <td>Feels-like max</td>
-                    <td>00 degrees</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
-                </tr>
-                <tr>
-                    <td>00% chance of precipication</td>
-                    <td>Precip type</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
-                </tr>
-                <tr>
-                    <td>Precipitation amount</td>
-                    <td>0.0 inches</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
-                </tr>
-                <tr>
-                    <td>Cloud cover</td>
-                    <td>00%</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
-                </tr>
-                <tr>
-                    <td>Max wind speed</td>
-                    <td>0 mph</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
-                </tr>
-                <tr>
-                    <td>Air quality (Pollutant type: stuff)</td>
-                    <td>Stufflevel</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
-                </tr>
-                <tr>
-                    <td>Precipitation: previous two days</td>
-                    <td>0.0 inches</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
-                </tr>
-                <tr>
-                    <td>Weather alert</td>
-                    <td>None</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
+                <tr class="header">
+                    <td class="header_label">Today</td>
+                    <td class="header_button"><button type="button" id="today_button" onclick="toggle('today')">Show</button></td>
+                    <td class="header_img"><img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" /></td>
                 </tr>
             </table>
-        </div>
-        <!-- Today park alerts -->
-        <p>
-            Park alerts 
-            <button type="button" id="today_alerts_button" onclick="toggle('today_alerts')">Show</button>
-            <img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" />
-        </p>
-        <div id="today_alerts">
-            {% if p['holiday'] or p['special_park_day'] %}
+            <div id="today" class="dropdown_l1">
+                <!-- Today weather -->
+                <p>
+                    Weather
+                    <button type="button" id="today_weather_button" onclick="toggle('today_weather')">Show</button>
+                    <img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good"  />
+                </p>
+                <div id="today_weather" class="dropdown_l2">
+                    <!-- Icon may be: snow, rain, fog, wind, cloudy, partly-cloudy, clear -->
+                    <p>
+                        <img src="{{ url_for('static', filename='img/rain.svg') }}" alt="Rain" title="Rain" /> 
+                        {{ p['weather_description'] }}
+                    </p>
+                    <table>
+                        <tr>
+                            <td>Max temperature</td>
+                            <td>{{ p['temp_max_f'] }} degrees</td>
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                        </tr>
+                        <tr>
+                            <td>Feels-like max</td>
+                            <td>{{ p['feels_like_max_f'] }} degrees</td>
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                        </tr>
+                        <tr>
+                            <td>Chance of precipitation ({{ p['precip_type'] }})</td>
+                            <td>{{ p['precip_prob'] }}%</td>
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                        </tr>
+                        <tr>
+                            <td>Precipitation amount</td>
+                            <td>{{ p['precip_depth_in'] }} inches</td>
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                        </tr>
+                        <tr>
+                            <td>Cloud cover</td>
+                            <td>{{ p['cloud_cover_percent'] }}%</td>
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                        </tr>
+                        <tr>
+                            <td>Max wind speed</td>
+                            <td>{{ p['max_wind_mph'] }} mph</td>
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                        </tr>
+                        <tr>
+                            <td>Air quality (Pollutant: {{ p['air_quality_type'] }})</td>
+                            <td>{{ p['air_quality_level'] }}</td>
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                        </tr>
+                        <tr>
+                            <td>Last 2 days precipitation</td>
+                            <td>0.0 inches</td>
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                        </tr>
+                        <tr>
+                            <td>Weather alerts</td>
+                            <td>None</td>
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- Today park alerts -->
+                <p>
+                    Park alerts 
+                    <button type="button" id="today_alerts_button" onclick="toggle('today_alerts')">Show</button>
+                    <img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" />
+                </p>
+                <div id="today_alerts" class="dropdown_l2">
+                    {% if p['holiday'] or p['special_park_day'] %}
+                    <table>
+                        <tr>
+                            <td>Special event</td>
+                            <td>{{ p['special_day_note'] }}</td>
+                        </tr>
+                    </table>
+                    {% else %}
+                    <p>No current alerts.</p>
+                    {% endif %}
+                </div>
+                <!-- Today seasonal -->
+                <p>
+                    Seasonal 
+                    <button type="button" id="today_seasonal_button" onclick="toggle('today_seasonal')">Show</button>
+                    <img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" />
+                </p>
+                <div id="today_seasonal" class="dropdown_l2">
+                    <table>
+                        {% for key, val in p['seasonal'].items() %}
+                        <tr>
+                            <td>{{ key }}</td>
+                            <td>{{ val['value'] }}</td>
+                            {% if val['level'] == 'warn' %}
+                            <td><img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" /></td>
+                            {% else %}
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tomorrow section -->
             <table>
-                <tr>
-                    <td>Special event</td>
-                    <td>{{ p['special_day_note'] }}</td>
+                <tr class="header">
+                    <td class="header_label">Tomorrow</td>
+                    <td class="header_button"><button type="button" id="tomorrow_button" onclick="toggle('tomorrow')">Show</button></td>
+                    <td class="header_img"><img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" /></td>
                 </tr>
             </table>
-            {% else %}
-            <p>No current alerts.</p>
-            {% endif %}
-        </div>
-        <!-- Today seasonal -->
-        <p>
-            Seasonal 
-            <button type="button" id="today_seasonal_button" onclick="toggle('today_seasonal')">Show</button>
-            <img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" />
-        </p>
-        <div id="today_seasonal">
+            <div id="tomorrow" class="dropdown_l1">
+                <!-- Tomorrow weather -->
+                <p>
+                    Weather
+                    <button type="button" id="tomorrow_weather_button" onclick="toggle('tomorrow_weather')">Show</button>
+                    <img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" />
+                </p>
+                <div id="tomorrow_weather" class="dropdown_l2">
+                    <!-- Icon may be: snow, rain, fog, wind, cloudy, partly-cloudy, clear -->
+                    <p>
+                        <img src="{{ url_for('static', filename='img/rain.svg') }}" alt="Rain" /> 
+                        {{ t['weather_description'] }} 
+                    </p>
+                    <table>
+                        <tr>
+                            <td>Max temperature</td>
+                            <td>{{ t['temp_max_f'] }} degrees</td>
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                        </tr>
+                        <tr>
+                            <td>Feels-like max</td>
+                            <td>{{ t['feels_like_max_f'] }} degrees</td>
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                        </tr>
+                        <tr>
+                            <td>Chance of precipitation ({{ t['precip_type'] }})</td>
+                            <td>{{ t['precip_prob'] }}%</td>
+                            <td><img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" /></td>
+                        </tr>
+                        <tr>
+                            <td>Precipitation amount</td>
+                            <td>{{ t['precip_depth_in'] }} inches</td>
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                        </tr>
+                        <tr>
+                            <td>Cloud cover</td>
+                            <td>{{ t['cloud_cover_percent'] }}%</td>
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                        </tr>
+                        <tr>
+                            <td>Max wind speed</td>
+                            <td>{{ t['max_wind_mph'] }} mph</td>
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                        </tr>
+                        <tr>
+                            <td>Air quality (Pollutant: {{ t['air_quality_type'] }})</td>
+                            <td>{{ t['air_quality_level'] }}</td>
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                        </tr>
+                        <tr>
+                            <td>Last 2 days precipitation</td>
+                            <td>0.0 inches</td>
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- Tomorrow park alerts -->
+                <p>
+                    Park alerts 
+                    <button type="button" id="tomorrow_alerts_button" onclick="toggle('tomorrow_alerts')">Show</button>
+                    <img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" />
+                </p>
+                <div id="tomorrow_alerts" class="dropdown_l2">
+                    {% if t['holiday'] or t['special_park_day'] %}
+                    <table>
+                        <tr>
+                            <td>Special event</td>
+                            <td>{{ t['special_day_note'] }}</td>
+                        </tr>
+                    </table>
+                    {% else %}
+                    <p>No current alerts.</p>
+                    {% endif %}
+                </div>
+                <!-- Tomorrow seasonal -->
+                <p>
+                    Seasonal 
+                    <button type="button" id="tomorrow_seasonal_button" onclick="toggle('tomorrow_seasonal')">Show</button>
+                    <img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" />
+                </p>
+                <div id="tomorrow_seasonal" class="dropdown_l2">
+                    <table>
+                        {% for key, val in t['seasonal'].items() %}
+                        <tr>
+                            <td>{{ key }}</td>
+                            <td>{{ val['value'] }}</td>
+                            {% if val['level'] == 'warn' %}
+                            <td><img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" /></td>
+                            {% else %}
+                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Park details section -->
             <table>
-                {% for key, val in p['seasonal'].items() %}
-                <tr>
-                    <td>{{ key }}</td>
-                    <td>{{ val['value'] }}</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
+                <tr class="header">
+                    <td class="header_label">Park details</td>
+                    <td class="header_button"><button type="button" id="details_button" onclick="toggle('details')">Show</button></td>
+                    <td class="header_img"></td>
                 </tr>
-                {% endfor %}
             </table>
+            <div id="details" class="dropdown_l1">
+                <table>
+                    <tr>
+                        <td>{{ p['city'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Visit the <a href="{{ p['site_url'] }}">park's website</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="{{ p['maps_url'] }}">Directions</a></td>
+                    </tr>
+                </table>
+            </div>
         </div>
+
+        <p>Today's sunrise is {{ p['sunrise'] }} and today's sunset is {{ p['sunset'] }}.</p>
+        <p><a href="{{ url_for('index') }}">Back to home</a></p>
+        <p class="footer">Weather data via <a href="https://www.visualcrossing.com">Visual Crossing</a>. Air quality & pollen data via <a href="https://www.accuweather.com/">Accuweather</a>.</p>
     </div>
-
-    <!-- Tomorrow section -->
-    <p>
-        Tomorrow 
-        <button type="button" id="tomorrow_button" onclick="toggle('tomorrow')">Show</button>
-        <img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" />
-    </p>
-    <div id="tomorrow">
-        <!-- Tomorrow weather -->
-        <p>
-            Weather
-            <button type="button" id="tomorrow_weather_button" onclick="toggle('tomorrow_weather')">Show</button>
-            <img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" />
-        </p>
-        <div id="tomorrow_weather">
-            <!-- Icon may be: snow, rain, fog, wind, cloudy, partly-cloudy, clear -->
-            <p>
-                <img src="{{ url_for('static', filename='img/partly-cloudy.svg') }}" alt="Iconalt" /> 
-                Partly cloudy throughout the day. 
-            </p>
-            <table>
-                <tr>
-                    <td>Max temperature</td>
-                    <td>00 degrees</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
-                </tr>
-                <tr>
-                    <td>Feels-like max</td>
-                    <td>00 degrees</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
-                </tr>
-                <tr>
-                    <td>00% chance of precipication</td>
-                    <td>Precip type</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
-                </tr>
-                <tr>
-                    <td>Precipitation amount</td>
-                    <td>0.0 inches</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
-                </tr>
-                <tr>
-                    <td>Cloud cover</td>
-                    <td>00%</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
-                </tr>
-                <tr>
-                    <td>Max wind speed</td>
-                    <td>0 mph</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
-                </tr>
-                <tr>
-                    <td>Air quality (Pollutant type: stuff)</td>
-                    <td>Stufflevel</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
-                </tr>
-                <tr>
-                    <td>Precipitation: previous two days</td>
-                    <td>0.0 inches</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
-                </tr>
-            </table>
-        </div>
-        <!-- Tomorrow park alerts -->
-        <p>
-            Park alerts 
-            <button type="button" id="tomorrow_alerts_button" onclick="toggle('tomorrow_alerts')">Show</button>
-            <img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" />
-        </p>
-        <div id="tomorrow_alerts">
-            {% if t['holiday'] or t['special_park_day'] %}
-            <table>
-                <tr>
-                    <td>Special event</td>
-                    <td>{{ t['special_day_note'] }}</td>
-                </tr>
-            </table>
-            {% else %}
-            <p>No current alerts.</p>
-            {% endif %}
-        </div>
-        <!-- Tomorrow seasonal -->
-        <p>
-            Seasonal 
-            <button type="button" id="tomorrow_seasonal_button" onclick="toggle('tomorrow_seasonal')">Show</button>
-            <img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" />
-        </p>
-        <div id="tomorrow_seasonal">
-            <table>
-                {% for key, val in t['seasonal'].items() %}
-                <tr>
-                    <td>{{ key }}</td>
-                    <td>{{ val['value'] }}</td>
-                    <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" /></td>
-                </tr>
-                {% endfor %}
-                <tr>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <!-- Park details section -->
-    <p>
-        Park details 
-        <button type="button" id="details_button" onclick="toggle('details')">Show</button>
-    </p>
-    <div id="details">
-        <table>
-            <tr>
-                <td>City, MN</td>
-            </tr>
-            <tr>
-                <td>Website: Park website link</td>
-            </tr>
-        </table>
-    </div>
-
-    <p><a href="{{ p['site_url'] }}">Directions</a></p>
-    <p>Today's sunrise is 00:00 and today's sunset is 00:00.</p>
-    <p><a href="{{ url_for('index') }}">Back to home</a></p>
-    <p>Weather data via <a href="https://www.visualcrossing.com">Visual Crossing</a>. Air quality & pollen data via <a href="https://www.accuweather.com/">Accuweather</a>.</p>
 </body>
 </html>

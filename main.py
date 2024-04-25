@@ -7,8 +7,26 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	parks = [{'name': 'Afton State Park', 'summary': 'good'}, {'name': 'Banning State Park', 'summary': 'warn'}] #  In alphabetical order by name
-	date = '4-18'
+	parks = [{'name': 'Afton State Park'}, 
+          {'name': 'Banning State Park'},
+          {'name': 'Frontenac State Park'},
+          {'name': 'Gooseberry Falls State Park'},
+          {'name': 'Grand Portage State Park'},
+          {'name': 'Great River Bluffs State Park'},
+          {'name': 'Interstate State Park'},
+          {'name': 'Jay Cooke State Park'},
+          {'name': 'Lake Maria State Park'},
+          {'name': 'Lebanon Hills Regional Park'},
+          {'name': 'Mille Lacs Kathio State Park'},
+          {'name': 'Myre-Big Island State Park'},
+          {'name': 'Nerstrand Big Woods State Park'},
+          {'name': 'Spring Lake Park Reserve'},
+          {'name': 'St. Croix State Park'},
+          {'name': 'Tettegouche State Park'},
+          {'name': 'Vermillion Falls Park'},
+          {'name': 'Whitewater State Park'},
+          {'name': "William O'Brien State Park"}] #  In alphabetical order by name
+	date = '4-22'
 	#parks = get_all_parks()
 	return render_template('index.html', parks=parks, date=date)
 
@@ -18,11 +36,59 @@ def park():
     p = {}
     p['name'] = 'Afton State Park'
     p['id'] = 1
+    p['city'] = 'Hastings, MN'
     p['site_url'] = 'https://www.dnr.state.mn.us/state_parks/park.html?id=spk00100#homepage'
-    p['seasonal'] = {'Humidity': {'value': 60, 'level': 'good'}, 'Pollen mold': {'value': 'low', 'level': 'good'}}
-    # pass tomorrow conditions as t = {...} ? and incl the seasonal fields in it bc they'll go in same table as weather
+    p['maps_url'] = 'https://maps.app.goo.gl/veKGszJpcVJt1HuF6'
+
+    p['weather_icon'] = 'rain'
+    p['weather_description'] = 'Partly cloudy throughout the day with a chance of rain.'
+    p['temp_max_f'] = 65
+    p['feels_like_max_f'] = 65
+    p['precip_prob'] = 47
+    p['precip_type'] = 'Rain'
+    p['precip_depth_in'] = 0.0
+    p['cloud_cover_percent'] = 46
+    p['max_wind_mph'] = 18
+    p['air_quality_type'] = 'Ozone'
+    p['air_quality_level'] = 'Good'
+    p['precip_yesterday_in'] = 0.0
+    p['precip_2_days_ago_in'] = 0.0
+    p['weather_alerts'] = False
+    p['holiday'] = True
+    p['special_park_day'] = False
+    p['special_day_note'] = 'Earth Day'
+    p['seasonal'] = {'Pollen mold': {'value': 'Low', 'level': 'good'},
+                     'Pollen tree': {'value': 'High', 'level': 'warn'},
+                     'Pollen ragweed': {'value': 'Low', 'level': 'good'},
+                     'Pollen grass': {'value': 'Low', 'level': 'good'}
+    }
+    p['sunrise'] = '06:14'
+    p['sunset'] = '20:06'
+
+    # pass tomorrow conditions as t = {...} 
     t = {}
-    t['seasonal'] = {'Pollen mold': {'value': 'low', 'level': 'good'}}
+    t['weather_icon'] = 'rain'
+    t['weather_description'] = 'Partly cloudy throughout the day with a chance of rain.'
+    t['temp_max_f'] = 58
+    t['feels_like_max_f'] = 58
+    t['precip_prob'] = 57
+    t['precip_type'] = 'Rain'
+    t['precip_depth_in'] = 0.0
+    t['cloud_cover_percent'] = 38
+    t['max_wind_mph'] = 17
+    t['air_quality_type'] = 'Ozone'
+    t['air_quality_level'] = 'Good'
+    t['precip_yesterday_in'] = 0.0
+    t['precip_2_days_ago_in'] = 0.0
+    t['holiday'] = False
+    t['special_park_day'] = False
+    t['special_day_note'] = None
+    t['seasonal'] = {'Pollen mold': {'value': 'Low', 'level': 'good'},
+                     'Pollen tree': {'value': 'High', 'level': 'warn'},
+                     'Pollen ragweed': {'value': 'Low', 'level': 'good'},
+                     'Pollen grass': {'value': 'Low', 'level': 'good'}
+    }
+
     #park_id = 1
     #p = get_one_park(park_id)
     return render_template('park.html', p=p, t=t)

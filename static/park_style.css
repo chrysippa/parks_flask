@@ -9,3 +9,34 @@
 #tomorrow_seasonal {
     display: none;
 }
+
+.dropdown_l1 {
+    width: 80%;
+    margin: auto;
+}
+
+.dropdown_l2 {
+    width: 80%;
+    margin: auto;
+}
+
+#data {
+    width: 90%;
+    margin: auto;
+}
+
+.header {
+    border: 2px solid gray;
+    background-color: lightgray;
+}
+
+.header_label {
+    width: 10rem;
+}
+
+.header_button {
+    width: 30rem;
+}
+
+.header_img {
+}
