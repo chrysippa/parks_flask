@@ -7,31 +7,34 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	parks = [{'name': 'Afton State Park'}, 
-          {'name': 'Banning State Park'},
-          {'name': 'Frontenac State Park'},
-          {'name': 'Gooseberry Falls State Park'},
-          {'name': 'Grand Portage State Park'},
-          {'name': 'Great River Bluffs State Park'},
-          {'name': 'Interstate State Park'},
-          {'name': 'Jay Cooke State Park'},
-          {'name': 'Lake Maria State Park'},
-          {'name': 'Lebanon Hills Regional Park'},
-          {'name': 'Mille Lacs Kathio State Park'},
-          {'name': 'Myre-Big Island State Park'},
-          {'name': 'Nerstrand Big Woods State Park'},
-          {'name': 'Spring Lake Park Reserve'},
-          {'name': 'St. Croix State Park'},
-          {'name': 'Tettegouche State Park'},
-          {'name': 'Vermillion Falls Park'},
-          {'name': 'Whitewater State Park'},
-          {'name': "William O'Brien State Park"}] #  In alphabetical order by name
+	parks = [{'name': 'Afton State Park', 'park_id': 1, 'level': 'warning'}, 
+          {'name': 'Banning State Park', 'park_id': 2, 'level': 'good'},
+          {'name': 'Frontenac State Park', 'park_id': 3, 'level': 'good'},
+          {'name': 'Gooseberry Falls State Park', 'park_id': 4, 'level': 'good'},
+          {'name': 'Grand Portage State Park', 'park_id': 5, 'level': 'good'},
+          {'name': 'Great River Bluffs State Park', 'park_id': 6, 'level': 'good'},
+          {'name': 'Interstate State Park', 'park_id': 7, 'level': 'good'},
+          {'name': 'Jay Cooke State Park', 'park_id': 8, 'level': 'good'},
+          {'name': 'Lake Maria State Park', 'park_id': 9, 'level': 'good'},
+          {'name': 'Lebanon Hills Regional Park', 'park_id': 17, 'level': 'good'},
+          {'name': 'Mille Lacs Kathio State Park', 'park_id': 10, 'level': 'good'},
+          {'name': 'Myre-Big Island State Park', 'park_id': 11, 'level': 'good'},
+          {'name': 'Nerstrand Big Woods State Park', 'park_id': 12, 'level': 'good'},
+          {'name': 'Spring Lake Park Reserve', 'park_id': 18, 'level': 'warning'},
+          {'name': 'St. Croix State Park', 'park_id': 13, 'level': 'good'},
+          {'name': 'Tettegouche State Park', 'park_id': 14, 'level': 'good'},
+          {'name': 'Vermillion Falls Park', 'park_id': 19, 'level': 'warning'},
+          {'name': 'Whitewater State Park', 'park_id': 15, 'level': 'good'},
+          {'name': "William O'Brien State Park", 'park_id': 16, 'level': 'good'}] #  In alphabetical order by name
 	date = '4-22'
 	#parks = get_all_parks()
 	return render_template('index.html', parks=parks, date=date)
 
-@app.route('/afton') # actually make a route for each park
-def park():
+@app.route('/parks/<park_id>')
+def park(park_id):
+    park_id = park_id
+    # if park_id in today's data, return template, else return 404
+
     # call a func get_one_park that checks if have data from today. if not, call other func pull_all_parks.
     p = {}
     p['name'] = 'Afton State Park'
@@ -58,9 +61,9 @@ def park():
     p['special_park_day'] = False
     p['special_day_note'] = 'Earth Day'
     p['seasonal'] = {'Pollen mold': {'value': 'Low', 'level': 'good'},
-                     'Pollen tree': {'value': 'High', 'level': 'warn'},
-                     'Pollen ragweed': {'value': 'Low', 'level': 'good'},
-                     'Pollen grass': {'value': 'Low', 'level': 'good'}
+                        'Pollen tree': {'value': 'High', 'level': 'warn'},
+                        'Pollen ragweed': {'value': 'Low', 'level': 'good'},
+                        'Pollen grass': {'value': 'Low', 'level': 'good'}
     }
     p['sunrise'] = '06:14'
     p['sunset'] = '20:06'
@@ -84,9 +87,9 @@ def park():
     t['special_park_day'] = False
     t['special_day_note'] = None
     t['seasonal'] = {'Pollen mold': {'value': 'Low', 'level': 'good'},
-                     'Pollen tree': {'value': 'High', 'level': 'warn'},
-                     'Pollen ragweed': {'value': 'Low', 'level': 'good'},
-                     'Pollen grass': {'value': 'Low', 'level': 'good'}
+                        'Pollen tree': {'value': 'High', 'level': 'warn'},
+                        'Pollen ragweed': {'value': 'Low', 'level': 'good'},
+                        'Pollen grass': {'value': 'Low', 'level': 'good'}
     }
 
     #park_id = 1

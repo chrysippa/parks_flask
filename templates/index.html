@@ -16,22 +16,10 @@
         <div id="list">
             <table>
                 {% for p in parks %}
-                    {% if p['name'] == 'Afton State Park' %}
-                    <tr>
-                        <td><a href="{{ url_for('park') }}">{{ p['name'] }}</a></td>
-                        <td><img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" /></td>
-                    </tr>
-                    {% elif p['name'] == 'Spring Lake Park Reserve' or p['name'] == 'Vermillion Falls Park' %}
-                    <tr>
-                        <td><a href="">{{ p['name'] }}</a></td>
-                        <td><img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" /></td>
-                    </tr>
-                    {% else %}
-                    <tr>
-                        <td><a href="">{{ p['name'] }}</a></td>
-                        <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
-                    </tr>
-                    {% endif %}
+                <tr>
+                    <td><a href="{{ url_for('park', park_id=p['park_id']) }}">{{ p['name'] }}</a></td>
+                    <td><img src="{{ url_for('static', filename='img/{}.svg'.format(p['level'])) }}" alt="{{ p['level'].title() }}" title="{{ p['level'].title() }}" /></td>
+                </tr>
                 {% endfor %}
             </table>
         </div>
