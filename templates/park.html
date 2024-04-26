@@ -14,20 +14,22 @@
 
         <div id="data">
             <!-- Today section -->
-            <table>
-                <tr class="header">
-                    <td class="header_label">Today</td>
-                    <td class="header_button"><button type="button" id="today_button" onclick="toggle('today')">Show</button></td>
-                    <td class="header_img"><img src="{{ url_for('static', filename='img/{}.svg'.format(tod['header'])) }}" alt="{{ tod['header'].title() }}" title="{{ tod['header'].title() }}" /></td>
+            <table class="header">
+                <tr>
+                    <td class="header_label_l1">Today</td>
+                    <td class="header_button_l1"><button type="button" id="today_button" onclick="toggle('today')">Show</button></td>
+                    <td class="header_img_l1"><img src="{{ url_for('static', filename='img/{}.svg'.format(tod['header'])) }}" alt="{{ tod['header'].title() }}" title="{{ tod['header'].title() }}" /></td>
                 </tr>
             </table>
             <div id="today" class="dropdown_l1">
                 <!-- Today weather -->
-                <p>
-                    Weather
-                    <button type="button" id="today_weather_button" onclick="toggle('today_weather')">Show</button>
-                    <img src="{{ url_for('static', filename='img/{}.svg'.format(tod['weather_header'])) }}" alt="{{ tod['weather_header'].title() }}" title="{{ tod['weather_header'].title() }}" />
-                </p>
+                <table class="header">
+                    <tr>
+                        <td class="header_label_l2">Weather</td>
+                        <td class="header_button_l2"><button type="button" id="today_weather_button" onclick="toggle('today_weather')">Show</button></td>
+                        <td class="header_img_l2"><img src="{{ url_for('static', filename='img/{}.svg'.format(tod['weather_header'])) }}" alt="{{ tod['weather_header'].title() }}" title="{{ tod['weather_header'].title() }}" /></td>
+                    </tr>
+                </table>
                 <div id="today_weather" class="dropdown_l2">
                     <!-- Icon may be: snow, rain, fog, wind, cloudy, partly-cloudy, clear -->
                     <p>
@@ -94,11 +96,13 @@
                     </table>
                 </div>
                 <!-- Today park alerts -->
-                <p>
-                    Park alerts 
-                    <button type="button" id="today_alerts_button" onclick="toggle('today_alerts')">Show</button>
-                    <img src="{{ url_for('static', filename='img/{}.svg'.format(tod['alerts_header'])) }}" alt="{{ tod['alerts_header'].title() }}" title="{{ tod['alerts_header'].title() }}" />
-                </p>
+                <table class="header">
+                    <tr>
+                        <td class="header_label_l2">Park alerts</td>
+                        <td class="header_button_l2"><button type="button" id="today_alerts_button" onclick="toggle('today_alerts')">Show</button></td>
+                        <td class="header_img_l2"><img src="{{ url_for('static', filename='img/{}.svg'.format(tod['alerts_header'])) }}" alt="{{ tod['alerts_header'].title() }}" title="{{ tod['alerts_header'].title() }}" /></td>
+                    </tr>
+                </table>
                 <div id="today_alerts" class="dropdown_l2">
                     {% if tod['holiday'] or tod['special_park_day'] %}
                     <table>
@@ -114,11 +118,13 @@
                     {% endif %}
                 </div>
                 <!-- Today seasonal -->
-                <p>
-                    Seasonal 
-                    <button type="button" id="today_seasonal_button" onclick="toggle('today_seasonal')">Show</button>
-                    <img src="{{ url_for('static', filename='img/{}.svg'.format(tod['seasonal_header'])) }}" alt="{{ tod['seasonal_header'].title() }}" title="{{ tod['seasonal_header'].title() }}" />
-                </p>
+                <table class="header">
+                    <tr>
+                        <td class="header_label_l2">Seasonal</td>
+                        <td class="header_button_l2"><button type="button" id="today_seasonal_button" onclick="toggle('today_seasonal')">Show</button></td>
+                        <td class="header_img_l2"><img src="{{ url_for('static', filename='img/{}.svg'.format(tod['seasonal_header'])) }}" alt="{{ tod['seasonal_header'].title() }}" title="{{ tod['seasonal_header'].title() }}" /></td>
+                    </tr>
+                </table>
                 <div id="today_seasonal" class="dropdown_l2">
                     <table>
                         {% for key, val in tod['seasonal'].items() %}
@@ -133,20 +139,22 @@
             </div>
 
             <!-- Tomorrow section -->
-            <table>
-                <tr class="header">
-                    <td class="header_label">Tomorrow</td>
-                    <td class="header_button"><button type="button" id="tomorrow_button" onclick="toggle('tomorrow')">Show</button></td>
-                    <td class="header_img"><img src="{{ url_for('static', filename='img/{}.svg'.format(tom['header'])) }}" alt="{{ tom['header'].title() }}" title="{{ tom['header'].title() }}" /></td>
+            <table class="header">
+                <tr>
+                    <td class="header_label_l1">Tomorrow</td>
+                    <td class="header_button_l1"><button type="button" id="tomorrow_button" onclick="toggle('tomorrow')">Show</button></td>
+                    <td class="header_img_l1"><img src="{{ url_for('static', filename='img/{}.svg'.format(tom['header'])) }}" alt="{{ tom['header'].title() }}" title="{{ tom['header'].title() }}" /></td>
                 </tr>
             </table>
             <div id="tomorrow" class="dropdown_l1">
                 <!-- Tomorrow weather -->
-                <p>
-                    Weather
-                    <button type="button" id="tomorrow_weather_button" onclick="toggle('tomorrow_weather')">Show</button>
-                    <img src="{{ url_for('static', filename='img/{}.svg'.format(tom['weather_header'])) }}" alt="{{ tom['weather_header'].title() }}" title="{{ tom['weather_header'].title() }}" />
-                </p>
+                <table class="header">
+                    <tr>
+                        <td class="header_label_l2">Weather</td>
+                        <td class="header_button_l2"><button type="button" id="tomorrow_weather_button" onclick="toggle('tomorrow_weather')">Show</button></td>
+                        <td class="header_img_l2"><img src="{{ url_for('static', filename='img/{}.svg'.format(tom['weather_header'])) }}" alt="{{ tom['weather_header'].title() }}" title="{{ tom['weather_header'].title() }}" /></td>
+                    </tr>
+                </table>
                 <div id="tomorrow_weather" class="dropdown_l2">
                     <!-- Icon may be: snow, rain, fog, wind, cloudy, partly-cloudy, clear -->
                     <p>
@@ -197,11 +205,13 @@
                     </table>
                 </div>
                 <!-- Tomorrow park alerts -->
-                <p>
-                    Park alerts 
-                    <button type="button" id="tomorrow_alerts_button" onclick="toggle('tomorrow_alerts')">Show</button>
-                    <img src="{{ url_for('static', filename='img/{}.svg'.format(tom['alerts_header'])) }}" alt="{{ tom['alerts_header'].title() }}" title="{{ tom['alerts_header'].title() }}" />
-                </p>
+                <table class="header">
+                    <tr>
+                        <td class="header_label_l2">Park alerts</td>
+                        <td class="header_button_l2"><button type="button" id="tomorrow_alerts_button" onclick="toggle('tomorrow_alerts')">Show</button></td>
+                        <td class="header_img_l2"><img src="{{ url_for('static', filename='img/{}.svg'.format(tom['alerts_header'])) }}" alt="{{ tom['alerts_header'].title() }}" title="{{ tom['alerts_header'].title() }}" /></td>
+                    </tr>
+                </table>
                 <div id="tomorrow_alerts" class="dropdown_l2">
                     {% if tom['holiday'] or tom['special_park_day'] %}
                     <table>
@@ -217,11 +227,13 @@
                     {% endif %}
                 </div>
                 <!-- Tomorrow seasonal -->
-                <p>
-                    Seasonal 
-                    <button type="button" id="tomorrow_seasonal_button" onclick="toggle('tomorrow_seasonal')">Show</button>
-                    <img src="{{ url_for('static', filename='img/{}.svg'.format(tom['seasonal_header'])) }}" alt="{{ tom['seasonal_header'].title() }}" title="{{ tom['seasonal_header'].title() }}" />
-                </p>
+                <table class="header">
+                    <tr>
+                        <td class="header_label_l2">Seasonal</td>
+                        <td class="header_button_l2"><button type="button" id="tomorrow_seasonal_button" onclick="toggle('tomorrow_seasonal')">Show</button></td>
+                        <td class="header_img_l2"><img src="{{ url_for('static', filename='img/{}.svg'.format(tom['seasonal_header'])) }}" alt="{{ tom['seasonal_header'].title() }}" title="{{ tom['seasonal_header'].title() }}" /></td>
+                    </tr>
+                </table>
                 <div id="tomorrow_seasonal" class="dropdown_l2">
                     <table>
                         {% for key, val in tom['seasonal'].items() %}
@@ -239,11 +251,11 @@
             </div>
 
             <!-- Park details section -->
-            <table>
-                <tr class="header">
-                    <td class="header_label">Park details</td>
-                    <td class="header_button"><button type="button" id="details_button" onclick="toggle('details')">Show</button></td>
-                    <td class="header_img"></td>
+            <table class="header">
+                <tr>
+                    <td class="header_label_l1">Park details</td>
+                    <td class="header_button_l1"><button type="button" id="details_button" onclick="toggle('details')">Show</button></td>
+                    <td class="header_img_l1"></td>
                 </tr>
             </table>
             <div id="details" class="dropdown_l1">

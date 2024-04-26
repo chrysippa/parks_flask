@@ -26,17 +26,34 @@
 }
 
 .header {
-    border: 2px solid gray;
-    background-color: lightgray;
+    border: 0.2rem solid lightgray; /* was 4px*/
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
-.header_label {
-    width: 10rem;
+.header td {
+    padding: 0.5rem;
 }
 
-.header_button {
-    width: 30rem;
+.header_label_l1 {
+    width: 20%;
 }
 
-.header_img {
+.header_button_l1 {
+    width: 60%;
 }
+
+.header_label_l2 {
+    width: 20%;
+}
+
+.header_button_l2 {
+    width: 50%;
+}
+
+.dropdown_l2 table {
+    width: 100%;
+}
+
+/* Fix widths of sublevel tr's esp for Weather Alerts which could be long */
