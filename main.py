@@ -32,69 +32,82 @@ def index():
 
 @app.route('/parks/<park_id>')
 def park(park_id):
-    park_id = park_id
     # if park_id in today's data, return template, else return 404
 
     # call a func get_one_park that checks if have data from today. if not, call other func pull_all_parks.
     p = {}
     p['name'] = 'Afton State Park'
-    p['id'] = 1
+    p['id'] = park_id
     p['city'] = 'Hastings, MN'
     p['site_url'] = 'https://www.dnr.state.mn.us/state_parks/park.html?id=spk00100#homepage'
     p['maps_url'] = 'https://maps.app.goo.gl/veKGszJpcVJt1HuF6'
 
-    p['weather_icon'] = 'rain'
-    p['weather_description'] = 'Partly cloudy throughout the day with a chance of rain.'
-    p['temp_max_f'] = 65
-    p['feels_like_max_f'] = 65
-    p['precip_prob'] = 47
-    p['precip_type'] = 'Rain'
-    p['precip_depth_in'] = 0.0
-    p['cloud_cover_percent'] = 46
-    p['max_wind_mph'] = 18
-    p['air_quality_type'] = 'Ozone'
-    p['air_quality_level'] = 'Good'
-    p['precip_yesterday_in'] = 0.0
-    p['precip_2_days_ago_in'] = 0.0
-    p['weather_alerts'] = False
-    p['holiday'] = True
-    p['special_park_day'] = False
-    p['special_day_note'] = 'Earth Day'
-    p['seasonal'] = {'Pollen mold': {'value': 'Low', 'level': 'good'},
-                        'Pollen tree': {'value': 'High', 'level': 'warn'},
-                        'Pollen ragweed': {'value': 'Low', 'level': 'good'},
-                        'Pollen grass': {'value': 'Low', 'level': 'good'}
-    }
-    p['sunrise'] = '06:14'
-    p['sunset'] = '20:06'
+    # Today conditions
+    tod = {}
+    tod['weather_icon'] = 'rain'
+    tod['weather_description'] = 'Partly cloudy throughout the day with a chance of rain.'
+    tod['temp_max_f'] = {'val': 65, 'level': 'good'}
+    tod['feels_like_max_f'] = {'val': 65, 'level': 'good'}
+    tod['precip_prob'] = {'val': 47, 'level': 'good'}
+    tod['precip_type'] = 'Rain'
+    tod['precip_depth_in'] = {'val': 0.0, 'level': 'good'}
+    tod['cloud_cover_percent'] = {'val': 46, 'level': 'good'}
+    tod['max_wind_mph'] = {'val': 18, 'level': 'good'}
+    tod['air_quality_type'] = 'Ozone'
+    tod['air_quality_level'] = {'val': 'Good', 'level': 'good'}
+    tod['precip_last_2_days'] = {'val': 0.0, 'level': 'good'} # calculate from precip_yesterday_in + precip_2_days_ago_in
+    tod['weather_alerts'] = []
 
-    # pass tomorrow conditions as t = {...} 
-    t = {}
-    t['weather_icon'] = 'rain'
-    t['weather_description'] = 'Partly cloudy throughout the day with a chance of rain.'
-    t['temp_max_f'] = 58
-    t['feels_like_max_f'] = 58
-    t['precip_prob'] = 57
-    t['precip_type'] = 'Rain'
-    t['precip_depth_in'] = 0.0
-    t['cloud_cover_percent'] = 38
-    t['max_wind_mph'] = 17
-    t['air_quality_type'] = 'Ozone'
-    t['air_quality_level'] = 'Good'
-    t['precip_yesterday_in'] = 0.0
-    t['precip_2_days_ago_in'] = 0.0
-    t['holiday'] = False
-    t['special_park_day'] = False
-    t['special_day_note'] = None
-    t['seasonal'] = {'Pollen mold': {'value': 'Low', 'level': 'good'},
-                        'Pollen tree': {'value': 'High', 'level': 'warn'},
-                        'Pollen ragweed': {'value': 'Low', 'level': 'good'},
-                        'Pollen grass': {'value': 'Low', 'level': 'good'}
+    tod['holiday'] = True
+    tod['special_park_day'] = False
+    tod['special_day_notes'] = ['Earth Day']
+
+    tod['seasonal'] = {'Pollen mold': {'val': 'Low', 'level': 'good'},
+                        'Pollen tree': {'val': 'High', 'level': 'warning'},
+                        'Pollen ragweed': {'val': 'Low', 'level': 'good'},
+                        'Pollen grass': {'val': 'Low', 'level': 'good'}
     }
 
-    #park_id = 1
+    tod['sunrise'] = '06:14'
+    tod['sunset'] = '20:06'
+
+    tod['weather_header'] = 'good'
+    tod['alerts_header'] = 'warning'
+    tod['seasonal_header'] = 'warning'
+    tod['header'] = 'warning'
+
+    # Tomorrow conditions 
+    tom = {}
+    tom['weather_icon'] = 'rain'
+    tom['weather_description'] = 'Partly cloudy throughout the day with a chance of rain.'
+    tom['temp_max_f'] = {'val': 58, 'level': 'good'}
+    tom['feels_like_max_f'] = {'val': 58, 'level': 'good'}
+    tom['precip_prob'] = {'val': 57, 'level': 'warning'}
+    tom['precip_type'] = 'Rain'
+    tom['precip_depth_in'] = {'val': 0.0, 'level': 'good'}
+    tom['cloud_cover_percent'] = {'val': 38, 'level': 'good'}
+    tom['max_wind_mph'] = {'val': 17, 'level': 'good'}
+    tom['air_quality_type'] = 'Ozone'
+    tom['air_quality_level'] = {'val': 'Good', 'level': 'good'}
+    tom['precip_last_2_days'] = {'val': 0.0, 'level': 'good'} # calculate from precip_yesterday_in + precip_2_days_ago_in
+
+    tom['holiday'] = False
+    tom['special_park_day'] = False
+    tom['special_day_notes'] = []
+
+    tom['seasonal'] = {'Pollen mold': {'val': 'Low', 'level': 'good'},
+                        'Pollen tree': {'val': 'High', 'level': 'warning'},
+                        'Pollen ragweed': {'val': 'Low', 'level': 'good'},
+                        'Pollen grass': {'val': 'Low', 'level': 'good'}
+    }
+
+    tom['weather_header'] = 'warning'
+    tom['alerts_header'] = 'good'
+    tom['seasonal_header'] = 'warning'
+    tom['header'] = 'warning'
+
     #p = get_one_park(park_id)
-    return render_template('park.html', p=p, t=t)
+    return render_template('park.html', p=p, tod=tod, tom=tom)
 
 @app.route('/_ah/warmup')
 def warmup():

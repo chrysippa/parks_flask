@@ -18,7 +18,7 @@
                 <tr class="header">
                     <td class="header_label">Today</td>
                     <td class="header_button"><button type="button" id="today_button" onclick="toggle('today')">Show</button></td>
-                    <td class="header_img"><img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" /></td>
+                    <td class="header_img"><img src="{{ url_for('static', filename='img/{}.svg'.format(tod['header'])) }}" alt="{{ tod['header'].title() }}" title="{{ tod['header'].title() }}" /></td>
                 </tr>
             </table>
             <div id="today" class="dropdown_l1">
@@ -26,75 +26,88 @@
                 <p>
                     Weather
                     <button type="button" id="today_weather_button" onclick="toggle('today_weather')">Show</button>
-                    <img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good"  />
+                    <img src="{{ url_for('static', filename='img/{}.svg'.format(tod['weather_header'])) }}" alt="{{ tod['weather_header'].title() }}" title="{{ tod['weather_header'].title() }}" />
                 </p>
                 <div id="today_weather" class="dropdown_l2">
                     <!-- Icon may be: snow, rain, fog, wind, cloudy, partly-cloudy, clear -->
                     <p>
-                        <img src="{{ url_for('static', filename='img/rain.svg') }}" alt="Rain" title="Rain" /> 
-                        {{ p['weather_description'] }}
+                        <img src="{{ url_for('static', filename='img/{}.svg'.format(tod['weather_icon'])) }}" alt="{{ tod['weather_icon'].title() }}" title="{{ tod['weather_icon'].title() }}" /> 
+                        {{ tod['weather_description'] }}
                     </p>
                     <table>
                         <tr>
                             <td>Max temperature</td>
-                            <td>{{ p['temp_max_f'] }} degrees</td>
-                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                            <td>{{ tod['temp_max_f']['val'] }} degrees</td>
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tod['temp_max_f']['level'])) }}" alt="{{ tod['temp_max_f']['level'].title() }}" title="{{ tod['temp_max_f']['level'].title() }}" /></td>
                         </tr>
                         <tr>
                             <td>Feels-like max</td>
-                            <td>{{ p['feels_like_max_f'] }} degrees</td>
-                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                            <td>{{ tod['feels_like_max_f']['val'] }} degrees</td>
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tod['feels_like_max_f']['level'])) }}" alt="{{ tod['feels_like_max_f']['level'].title() }}" title="{{ tod['feels_like_max_f']['level'].title() }}" /></td>
                         </tr>
                         <tr>
-                            <td>Chance of precipitation ({{ p['precip_type'] }})</td>
-                            <td>{{ p['precip_prob'] }}%</td>
-                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                            <td>Chance of precipitation ({{ tod['precip_type'] }})</td>
+                            <td>{{ tod['precip_prob']['val'] }}%</td>
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tod['precip_prob']['level'])) }}" alt="{{ tod['precip_prob']['level'].title() }}" title="{{ tod['precip_prob']['level'].title() }}" /></td>
                         </tr>
                         <tr>
                             <td>Precipitation amount</td>
-                            <td>{{ p['precip_depth_in'] }} inches</td>
-                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                            <td>{{ tod['precip_depth_in']['val'] }} inches</td>
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tod['precip_depth_in']['level'])) }}" alt="{{ tod['precip_depth_in']['level'].title() }}" title="{{ tod['precip_depth_in']['level'].title() }}" /></td>
+
                         </tr>
                         <tr>
                             <td>Cloud cover</td>
-                            <td>{{ p['cloud_cover_percent'] }}%</td>
-                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                            <td>{{ tod['cloud_cover_percent']['val'] }}%</td>
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tod['cloud_cover_percent']['level'])) }}" alt="{{ tod['cloud_cover_percent']['level'].title() }}" title="{{ tod['cloud_cover_percent']['level'].title() }}" /></td>
                         </tr>
                         <tr>
                             <td>Max wind speed</td>
-                            <td>{{ p['max_wind_mph'] }} mph</td>
-                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                            <td>{{ tod['max_wind_mph']['val'] }} mph</td>
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tod['max_wind_mph']['level'])) }}" alt="{{ tod['max_wind_mph']['level'].title() }}" title="{{ tod['max_wind_mph']['level'].title() }}" /></td>
                         </tr>
                         <tr>
-                            <td>Air quality (Pollutant: {{ p['air_quality_type'] }})</td>
-                            <td>{{ p['air_quality_level'] }}</td>
-                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                            <td>Air quality (Pollutant: {{ tod['air_quality_type'] }})</td>
+                            <td>{{ tod['air_quality_level']['val'] }}</td>
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tod['air_quality_level']['level'])) }}" alt="{{ tod['air_quality_level']['level'].title() }}" title="{{ tod['air_quality_level']['level'].title() }}" /></td>
                         </tr>
                         <tr>
                             <td>Last 2 days precipitation</td>
-                            <td>0.0 inches</td>
-                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                            <td>{{ tod['precip_last_2_days']['val'] }} inches</td>
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tod['precip_last_2_days']['level'])) }}" alt="{{ tod['precip_last_2_days']['level'].title() }}" title="{{ tod['precip_last_2_days']['level'].title() }}" /></td>
                         </tr>
+                        {% if tod['weather_alerts'] %}
+                            {% for alert in tod['weather_alerts'] %}
+                            <tr>
+                                <td>Weather alerts</td>
+                                <td>{{ alert }}</td>
+                                <td><img src="{{ url_for('static', filename='img/warning.svg') }}" alt="Warning" title="Warning" /></td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
                         <tr>
                             <td>Weather alerts</td>
                             <td>None</td>
                             <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
                         </tr>
+                        {% endif %}
                     </table>
                 </div>
                 <!-- Today park alerts -->
                 <p>
                     Park alerts 
                     <button type="button" id="today_alerts_button" onclick="toggle('today_alerts')">Show</button>
-                    <img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" />
+                    <img src="{{ url_for('static', filename='img/{}.svg'.format(tod['alerts_header'])) }}" alt="{{ tod['alerts_header'].title() }}" title="{{ tod['alerts_header'].title() }}" />
                 </p>
                 <div id="today_alerts" class="dropdown_l2">
-                    {% if p['holiday'] or p['special_park_day'] %}
+                    {% if tod['holiday'] or tod['special_park_day'] %}
                     <table>
+                        {% for note in tod['special_day_notes'] %}
                         <tr>
                             <td>Special event</td>
-                            <td>{{ p['special_day_note'] }}</td>
+                            <td>{{ note }}</td>
                         </tr>
+                        {% endfor %}
                     </table>
                     {% else %}
                     <p>No current alerts.</p>
@@ -104,19 +117,15 @@
                 <p>
                     Seasonal 
                     <button type="button" id="today_seasonal_button" onclick="toggle('today_seasonal')">Show</button>
-                    <img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" />
+                    <img src="{{ url_for('static', filename='img/{}.svg'.format(tod['seasonal_header'])) }}" alt="{{ tod['seasonal_header'].title() }}" title="{{ tod['seasonal_header'].title() }}" />
                 </p>
                 <div id="today_seasonal" class="dropdown_l2">
                     <table>
-                        {% for key, val in p['seasonal'].items() %}
+                        {% for key, val in tod['seasonal'].items() %}
                         <tr>
                             <td>{{ key }}</td>
-                            <td>{{ val['value'] }}</td>
-                            {% if val['level'] == 'warn' %}
-                            <td><img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" /></td>
-                            {% else %}
-                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
-                            {% endif %}
+                            <td>{{ val['val'] }}</td>
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(val['level'])) }}" alt="{{ val['level'].title() }}" title="{{ val['level'].title() }}" /></td>
                         </tr>
                         {% endfor %}
                     </table>
@@ -128,7 +137,7 @@
                 <tr class="header">
                     <td class="header_label">Tomorrow</td>
                     <td class="header_button"><button type="button" id="tomorrow_button" onclick="toggle('tomorrow')">Show</button></td>
-                    <td class="header_img"><img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" /></td>
+                    <td class="header_img"><img src="{{ url_for('static', filename='img/{}.svg'.format(tom['header'])) }}" alt="{{ tom['header'].title() }}" title="{{ tom['header'].title() }}" /></td>
                 </tr>
             </table>
             <div id="tomorrow" class="dropdown_l1">
@@ -136,54 +145,54 @@
                 <p>
                     Weather
                     <button type="button" id="tomorrow_weather_button" onclick="toggle('tomorrow_weather')">Show</button>
-                    <img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" />
+                    <img src="{{ url_for('static', filename='img/{}.svg'.format(tom['weather_header'])) }}" alt="{{ tom['weather_header'].title() }}" title="{{ tom['weather_header'].title() }}" />
                 </p>
                 <div id="tomorrow_weather" class="dropdown_l2">
                     <!-- Icon may be: snow, rain, fog, wind, cloudy, partly-cloudy, clear -->
                     <p>
-                        <img src="{{ url_for('static', filename='img/rain.svg') }}" alt="Rain" /> 
-                        {{ t['weather_description'] }} 
+                        <img src="{{ url_for('static', filename='img/{}.svg'.format(tom['weather_icon'])) }}" alt="{{ tom['weather_icon'].title() }}" title="{{ tom['weather_icon'].title() }}" /> 
+                        {{ tom['weather_description'] }} 
                     </p>
                     <table>
                         <tr>
                             <td>Max temperature</td>
-                            <td>{{ t['temp_max_f'] }} degrees</td>
-                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                            <td>{{ tom['temp_max_f']['val'] }} degrees</td>
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tom['temp_max_f']['level'])) }}" alt="{{ tom['temp_max_f']['level'].title() }}" title="{{ tom['temp_max_f']['level'].title() }}" /></td>
                         </tr>
                         <tr>
                             <td>Feels-like max</td>
-                            <td>{{ t['feels_like_max_f'] }} degrees</td>
-                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                            <td>{{ tom['feels_like_max_f']['val'] }} degrees</td>
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tom['feels_like_max_f']['level'])) }}" alt="{{ tom['feels_like_max_f']['level'].title() }}" title="{{ tom['feels_like_max_f']['level'].title() }}" /></td>
                         </tr>
                         <tr>
-                            <td>Chance of precipitation ({{ t['precip_type'] }})</td>
-                            <td>{{ t['precip_prob'] }}%</td>
-                            <td><img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" /></td>
+                            <td>Chance of precipitation ({{ tom['precip_type'] }})</td>
+                            <td>{{ tom['precip_prob']['val'] }}%</td>
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tom['precip_prob']['level'])) }}" alt="{{ tom['precip_prob']['level'].title() }}" title="{{ tom['precip_prob']['level'].title() }}" /></td>
                         </tr>
                         <tr>
                             <td>Precipitation amount</td>
-                            <td>{{ t['precip_depth_in'] }} inches</td>
-                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                            <td>{{ tom['precip_depth_in']['val'] }} inches</td>
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tom['precip_depth_in']['level'])) }}" alt="{{ tom['precip_depth_in']['level'].title() }}" title="{{ tom['precip_depth_in']['level'].title() }}" /></td>
                         </tr>
                         <tr>
                             <td>Cloud cover</td>
-                            <td>{{ t['cloud_cover_percent'] }}%</td>
-                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                            <td>{{ tom['cloud_cover_percent']['val'] }}%</td>
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tom['cloud_cover_percent']['level'])) }}" alt="{{ tom['cloud_cover_percent']['level'].title() }}" title="{{ tom['cloud_cover_percent']['level'].title() }}" /></td>
                         </tr>
                         <tr>
                             <td>Max wind speed</td>
-                            <td>{{ t['max_wind_mph'] }} mph</td>
-                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                            <td>{{ tom['max_wind_mph']['val'] }} mph</td>
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tom['max_wind_mph']['level'])) }}" alt="{{ tom['max_wind_mph']['level'].title() }}" title="{{ tom['max_wind_mph']['level'].title() }}" /></td>
                         </tr>
                         <tr>
-                            <td>Air quality (Pollutant: {{ t['air_quality_type'] }})</td>
-                            <td>{{ t['air_quality_level'] }}</td>
-                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                            <td>Air quality (Pollutant: {{ tom['air_quality_type'] }})</td>
+                            <td>{{ tom['air_quality_level']['val'] }}</td>
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tom['air_quality_level']['level'])) }}" alt="{{ tom['air_quality_level']['level'].title() }}" title="{{ tom['air_quality_level']['level'].title() }}" /></td>
                         </tr>
                         <tr>
                             <td>Last 2 days precipitation</td>
-                            <td>0.0 inches</td>
-                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
+                            <td>{{ tom['precip_last_2_days']['val'] }} inches</td>
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tom['precip_last_2_days']['level'])) }}" alt="{{ tom['precip_last_2_days']['level'].title() }}" title="{{ tom['precip_last_2_days']['level'].title() }}" /></td>
                         </tr>
                     </table>
                 </div>
@@ -191,15 +200,17 @@
                 <p>
                     Park alerts 
                     <button type="button" id="tomorrow_alerts_button" onclick="toggle('tomorrow_alerts')">Show</button>
-                    <img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" />
+                    <img src="{{ url_for('static', filename='img/{}.svg'.format(tom['alerts_header'])) }}" alt="{{ tom['alerts_header'].title() }}" title="{{ tom['alerts_header'].title() }}" />
                 </p>
                 <div id="tomorrow_alerts" class="dropdown_l2">
-                    {% if t['holiday'] or t['special_park_day'] %}
+                    {% if tom['holiday'] or tom['special_park_day'] %}
                     <table>
+                        {% for note in tom['special_day_notes'] %}
                         <tr>
                             <td>Special event</td>
-                            <td>{{ t['special_day_note'] }}</td>
+                            <td>{{ note }}</td>
                         </tr>
+                        {% endfor %}
                     </table>
                     {% else %}
                     <p>No current alerts.</p>
@@ -209,19 +220,15 @@
                 <p>
                     Seasonal 
                     <button type="button" id="tomorrow_seasonal_button" onclick="toggle('tomorrow_seasonal')">Show</button>
-                    <img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" />
+                    <img src="{{ url_for('static', filename='img/{}.svg'.format(tom['seasonal_header'])) }}" alt="{{ tom['seasonal_header'].title() }}" title="{{ tom['seasonal_header'].title() }}" />
                 </p>
                 <div id="tomorrow_seasonal" class="dropdown_l2">
                     <table>
-                        {% for key, val in t['seasonal'].items() %}
+                        {% for key, val in tom['seasonal'].items() %}
                         <tr>
                             <td>{{ key }}</td>
                             <td>{{ val['value'] }}</td>
-                            {% if val['level'] == 'warn' %}
-                            <td><img src="{{ url_for('static', filename='img/warn.svg') }}" alt="Warning" title="Warning" /></td>
-                            {% else %}
-                            <td><img src="{{ url_for('static', filename='img/good.svg') }}" alt="Good" title="Good" /></td>
-                            {% endif %}
+                            <td><img src="{{ url_for('static', filename='img/{}.svg'.format(val['level'])) }}" alt="{{ val['level'].title() }}" title="{{ val['level'].title() }}" /></td>
                         </tr>
                         {% endfor %}
                         <tr>
@@ -254,7 +261,7 @@
             </div>
         </div>
 
-        <p>Today's sunrise is {{ p['sunrise'] }} and today's sunset is {{ p['sunset'] }}.</p>
+        <p>Today's sunrise is {{ tod['sunrise'] }} and today's sunset is {{ tod['sunset'] }}.</p>
         <p><a href="{{ url_for('index') }}">Back to home</a></p>
         <p class="footer">Weather data via <a href="https://www.visualcrossing.com">Visual Crossing</a>. Air quality & pollen data via <a href="https://www.accuweather.com/">Accuweather</a>.</p>
     </div>
