@@ -26,7 +26,7 @@ function addMap() {
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         minZoom: 6,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
     }).addTo(map);
 
     // Add a marker for each park
@@ -67,7 +67,7 @@ function addMap() {
         greenIcon
         {% endif %}
     }).addTo(map)
-    .bindPopup('<a href="{{ url_for('park', park_id=p['park_id']) }}">{{ p['name'] }}</a>')
+    .bindPopup('<a href="{{ url_for('park', park_id=p['park_id']) }}" target="_blank">{{ p['name'] }}</a>')
     .on('click', (e) => {e.target.openPopup()});
     {% endfor %}
 };

@@ -264,10 +264,10 @@
                         <td>{{ p['city'] }}</td>
                     </tr>
                     <tr>
-                        <td>Visit the <a href="{{ p['site_url'] }}">park's website</a></td>
+                        <td>Visit the <a href="{{ p['site_url'] }}" target="_blank">park's website</a></td>
                     </tr>
                     <tr>
-                        <td><a href="{{ p['maps_url'] }}">Directions</a></td>
+                        <td><a href="{{ p['maps_url'] }}" target="_blank">Directions</a></td>
                     </tr>
                 </table>
             </div>
@@ -275,7 +275,7 @@
 
         <p>Today's sunrise is {{ tod['sunrise'] }} and today's sunset is {{ tod['sunset'] }}.</p>
         <p><a href="{{ url_for('index') }}">Back to home</a></p>
-        <p class="footer">Weather data via <a href="https://www.visualcrossing.com">Visual Crossing</a>. Air quality & pollen data via <a href="https://www.accuweather.com/">Accuweather</a>.</p>
+        <p class="footer">Weather data via <a href="https://www.visualcrossing.com" target="_blank">Visual Crossing</a>. Air quality & pollen data via <a href="https://www.accuweather.com/" target="_blank">Accuweather</a>.</p>
     </div>
 </body>
 </html>

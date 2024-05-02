@@ -17,7 +17,7 @@
             <table>
                 {% for p in parks %}
                 <tr>
-                    <td><a href="{{ url_for('park', park_id=p['park_id']) }}">{{ p['name'] }}</a></td>
+                    <td><a href="{{ url_for('park', park_id=p['park_id']) }}" target="_blank">{{ p['name'] }}</a></td>
                     <td><img src="{{ url_for('static', filename='img/{}.svg'.format(p['level'])) }}" alt="{{ p['level'].title() }}" title="{{ p['level'].title() }}" /></td>
                 </tr>
                 {% endfor %}
