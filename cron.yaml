@@ -3,7 +3,7 @@ cron:
   url: /tasks/pull-data
   schedule: every day 01:55
   timezone: America/Chicago
-  retry-parameters:
+  retry_parameters:
     job_retry_limit: 3
     min_backoff_seconds: 10
     max_doublings: 2
