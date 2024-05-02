@@ -11,8 +11,8 @@ table {
 
 #map {
     display: block;
-    height: 70vh; /* Percent of viewport height */
-    width: 50%;
+    height: 60vh; /* Percent of viewport height */
+    width: 90%;
     margin: auto;
 }
 
