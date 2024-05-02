@@ -1,7 +1,7 @@
 cron:
 - description: "data refresh"
   url: /tasks/pull-data
-  schedule: every day 02:00
+  schedule: every day 01:55
   timezone: America/Chicago
   retry-parameters:
     job_retry_limit: 3
