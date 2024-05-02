@@ -1,0 +1,9 @@
+cron:
+- description: "data refresh"
+  url: /tasks/pull-data
+  schedule: every day 02:00
+  timezone: America/Chicago
+  retry-parameters:
+    job_retry_limit: 3
+    min_backoff_seconds: 10
+    max_doublings: 2
