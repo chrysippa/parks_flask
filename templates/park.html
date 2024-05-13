@@ -69,7 +69,7 @@
                             <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tod['max_wind_mph']['level'])) }}" alt="{{ tod['max_wind_mph']['level'].title() }}" title="{{ tod['max_wind_mph']['level'].title() }}" /></td>
                         </tr>
                         <tr>
-                            <td>Air quality (Pollutant: {{ tod['air_quality_type'] }})</td>
+                            <td>Air quality</td>
                             <td>{{ tod['air_quality_level']['val'] }}</td>
                             <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tod['air_quality_level']['level'])) }}" alt="{{ tod['air_quality_level']['level'].title() }}" title="{{ tod['air_quality_level']['level'].title() }}" /></td>
                         </tr>
@@ -193,7 +193,7 @@
                             <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tom['max_wind_mph']['level'])) }}" alt="{{ tom['max_wind_mph']['level'].title() }}" title="{{ tom['max_wind_mph']['level'].title() }}" /></td>
                         </tr>
                         <tr>
-                            <td>Air quality (Pollutant: {{ tom['air_quality_type'] }})</td>
+                            <td>Air quality</td>
                             <td>{{ tom['air_quality_level']['val'] }}</td>
                             <td><img src="{{ url_for('static', filename='img/{}.svg'.format(tom['air_quality_level']['level'])) }}" alt="{{ tom['air_quality_level']['level'].title() }}" title="{{ tom['air_quality_level']['level'].title() }}" /></td>
                         </tr>
