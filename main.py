@@ -106,7 +106,7 @@ def format_single_park_data(tod, tom, basics, w_alerts, days):
     winter_end = current_date.replace(month=4, day=15)
     spring_start = current_date.replace(month=3, day=1)
     spring_end = current_date.replace(month=5, day=31)
-    summer_start = current_date.replace(month=6, day=1)
+    summer_start = current_date.replace(month=5, day=10)
     summer_end = current_date.replace(month=7, day=15)
     fall_start = current_date.replace(month=7, day=1)
     fall_end = current_date.replace(month=11, day=15)
