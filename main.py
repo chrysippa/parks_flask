@@ -172,7 +172,8 @@ def format_single_park_data(tod, tom, basics, w_alerts, days):
         today['weather_alerts'] = []
         if w_alerts:
             for row in w_alerts:
-                today['weather_alerts'].append(row['alert'])
+                this_park_alerts = [row['alert'] for row in w_alerts if row['park_id'] == p_id]
+                today['weather_alerts'] = this_park_alerts
 
         today['weather_header'] = ''
         today['alerts_header'] = ''
