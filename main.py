@@ -353,7 +353,7 @@ def assign_levels(data):
             else:
                 day['weather_header'] = 'good'
             # Weather alerts trigger a 'warning' unless already 'bad'
-            if day == 'today' and day['weather_alerts']:
+            if d == 'today' and day['weather_alerts']:
                 if day['weather_header'] != 'bad':
                     day['weather_header'] = 'warning'
 
