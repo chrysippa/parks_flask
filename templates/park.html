@@ -239,7 +239,7 @@
                         {% for key, val in tom['seasonal'].items() %}
                         <tr>
                             <td>{{ key }}</td>
-                            <td>{{ val['value'] }}</td>
+                            <td>{{ val['val'] }}</td>
                             <td><img src="{{ url_for('static', filename='img/{}.svg'.format(val['level'])) }}" alt="{{ val['level'].title() }}" title="{{ val['level'].title() }}" /></td>
                         </tr>
                         {% endfor %}
