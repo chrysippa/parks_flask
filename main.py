@@ -248,7 +248,7 @@ def assign_levels(data):
     numeric_cutoffs_high = {
         'temp_max_f': {'warning': 85, 'bad': 90},
         'feels_like_max_f': {'warning': 87, 'bad': 95},
-        'precip_prob': {'warning': 50, 'bad': 90},
+        'precip_prob': {'warning': 75, 'bad': 90},
         'precip_depth_in': {'warning': 0.5, 'bad': 1.0},
         'cloud_cover_percent': {'warning': 90, 'bad': 110}, # Avoid triggering 'bad' for cloud cover
         'max_wind_mph': {'warning': 25, 'bad': 35},
