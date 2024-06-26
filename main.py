@@ -252,7 +252,7 @@ def assign_levels(data):
         'precip_depth_in': {'warning': 0.5, 'bad': 1.0},
         'cloud_cover_percent': {'warning': 90, 'bad': 110}, # Avoid triggering 'bad' for cloud cover
         'max_wind_mph': {'warning': 25, 'bad': 35},
-        'precip_last_2_days': {'warning': 0.5, 'bad': 1.0}
+        'precip_last_2_days': {'warning': 0.8, 'bad': 1.5}
     }
     numeric_cutoffs_low = {
         'temp_max_f': {'warning': 50, 'bad': 20},
